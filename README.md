@@ -1,5 +1,8 @@
 # Appium Android Automation (Java + Gradle + TestNG)
 
+**Repository:** https://github.com/Shahd-zain1/appium-android-automation
+**Author:** Shahd Zain ([@Shahd-zain1](https://github.com/Shahd-zain1))
+
 Mobile automation tests written with **Appium 3**, **UiAutomator2**, and the **Appium Java Client**.
 The project automates the built-in Android Settings app, the ApiDemos APK, the four core mobile gestures
 (Tap, Scroll, Slide, Drag & Drop), and a web page in Chrome on Android.
