@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Appium Java Client (brings Selenium transitively)
+    testImplementation 'io.appium:java-client:10.1.1'
+    testImplementation 'org.testng:testng:7.11.0'
+    // Silences the "no SLF4J provider" warning
+    testImplementation 'org.slf4j:slf4j-simple:2.0.17'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
+}
+
+test {
+    useTestNG()
+
+    // Forward optional -D flags from the Gradle command line to the test JVM
+    ['deviceUdid', 'apkPath', 'pauseSeconds'].each { propertyName ->
+        if (System.getProperty(propertyName)) {
+            systemProperty propertyName, System.getProperty(propertyName)
+        }
+    }
+
+    // Always re-run tests, never report "UP-TO-DATE"
+    outputs.upToDateWhen { false }
+
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
+}
